@@ -1,0 +1,35 @@
+{
+  "name": "campushub-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.5",
+    "@mui/icons-material": "^5.14.5",
+    "@reduxjs/toolkit": "^1.9.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
+    "react-redux": "^8.1.2",
+    "axios": "^1.4.0",
+    "socket.io-client": "^4.7.2",
+    "formik": "^2.4.3",
+    "yup": "^1.2.0",
+    "date-fns": "^2.30.0",
+    "react-query": "^3.39.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.4",
+    "vite": "^4.4.9",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/jest-dom": "^6.1.2",
+    "vitest": "^0.34.3"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest"
+  }
+}

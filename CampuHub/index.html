@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusHub - Your College Community Platform</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    <script type="module" src="js/auth-state.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body>
+    <div class="loading-animation"></div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                CampusHub
+            </a>
+            <ul class="nav-links">
+                <li><a href="marketplace.html"><i class="fas fa-store"></i> Marketplace</a></li>
+                <li><a href="study-groups.html"><i class="fas fa-users"></i> Study Groups</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
+                <li><a href="community.html"><i class="fas fa-comments"></i> Community</a></li>
+                <li><a href="support.html"><i class="fas fa-hands-helping"></i> Support</a></li>
+                <li class="auth-section">
+                    <a href="auth.html" class="btn btn-primary auth-link" id="loginButton">Login</a>
+                    <div class="profile-dropdown" id="profileDropdown" style="display: none;">
+                        <button class="profile-button" id="profileButton">
+                            <img src="" alt="Profile" id="profileImage" class="profile-image">
+                            <span id="userName">User Name</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="#" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to CampusHub</h1>
+            <p>Connect, Learn, and Grow with Your Campus Community</p>
+            <a href="auth.html" class="btn btn-primary">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">What We Offer</h2>
+        <div class="features-grid">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-shopping-cart feature-icon"></i>
+                <h3>Marketplace</h3>
+                <p>Buy, sell, or exchange items within your campus community</p>
+                <div class="feature-actions">
+                    <a href="marketplace.html" class="btn btn-primary">Browse Market</a>
+                    <a href="marketplace/sell.html" class="btn btn-outline">List Item</a>
+                </div>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-users feature-icon"></i>
+                <h3>Study Groups</h3>
+                <p>Find or create study groups for better learning</p>
+                <div class="feature-actions">
+                    <a href="study-groups.html" class="btn btn-primary">Find Groups</a>
+                    <a href="study-groups/create.html" class="btn btn-outline">Create Group</a>
+                </div>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-calendar-alt feature-icon"></i>
+                <h3>Events</h3>
+                <p>Stay updated with campus events and activities</p>
+                <div class="feature-actions">
+                    <a href="events.html" class="btn btn-primary">View Events</a>
+                    <a href="events/create.html" class="btn btn-outline">Host Event</a>
+                </div>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                <i class="fas fa-briefcase feature-icon"></i>
+                <h3>Job Opportunities</h3>
+                <p>Discover internships and job openings</p>
+                <div class="feature-actions">
+                    <a href="jobs.html" class="btn btn-primary">Find Jobs</a>
+                    <a href="jobs/post.html" class="btn btn-outline">Post Job</a>
+                </div>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                <i class="fas fa-comments feature-icon"></i>
+                <h3>Community Forums</h3>
+                <p>Engage in discussions and connect with fellow students</p>
+                <div class="feature-actions">
+                    <a href="community.html" class="btn btn-primary">Browse Forums</a>
+                    <a href="community/new-topic.html" class="btn btn-outline">New Topic</a>
+                </div>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                <i class="fas fa-hands-helping feature-icon"></i>
+                <h3>Mental Health Support</h3>
+                <p>Access resources and connect with support groups</p>
+                <div class="feature-actions">
+                    <a href="support.html" class="btn btn-primary">Get Help</a>
+                    <a href="support/resources.html" class="btn btn-outline">Resources</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CampusHub</h3>
+                <p>Connecting students, empowering communities.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Remove loading animation when page is loaded
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loading-animation');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Animate feature cards on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+    
+</body>
+</html>

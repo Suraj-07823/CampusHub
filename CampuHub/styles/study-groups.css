@@ -1,0 +1,484 @@
+/* Study Groups Page Styles */
+.study-groups-container {
+    max-width: 1200px;
+    margin: 80px auto 2rem;
+    padding: 0 1rem;
+}
+
+.study-groups-header {
+    margin-bottom: 2rem;
+}
+
+.study-groups-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+/* Search and Filters */
+.search-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.search-bar {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+.search-bar button {
+    padding: 0.8rem 1.2rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-bar button:hover {
+    background: #1976d2;
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+}
+
+.filters select {
+    padding: 0.8rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filters select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+/* Study Group Grid */
+.study-groups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.study-group-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.study-group-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.group-header {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    position: relative;
+}
+
+.group-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.group-subject {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 0.25rem;
+}
+
+.group-details {
+    padding: 1.5rem;
+}
+
+.group-course {
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.group-description {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.group-semester {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.group-participants {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.resources-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+.resources-section h4 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.resources-content {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.creator-info {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.join-group-btn {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 6px;
+    background: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.join-group-btn:hover:not(:disabled) {
+    background: var(--primary-dark);
+}
+
+.join-group-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    margin: 50px auto;
+    padding: 2rem;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+.close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: var(--text-color);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+/* Form Layout */
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group.half {
+    flex: 1;
+    min-width: 0;
+}
+
+.form-group small {
+    display: block;
+    color: #666;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Price Input Styling */
+.form-group input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.form-group input[type="number"]::-webkit-outer-spin-button,
+.form-group input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Checkbox Styling */
+.form-group input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Study Group Card Price */
+.price-tag {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.price-tag.free {
+    background: #f5f5f5;
+    color: #666;
+}
+
+/* Engineering Branch Tags */
+.branch-tag {
+    background: #e3f2fd;
+    color: var(--primary-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.semester-tag {
+    background: #fff3e0;
+    color: #f57c00;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-left: 0.5rem;
+}
+
+/* Resources Section */
+.resources-list {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+}
+
+.resources-list li {
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+/* Notifications */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notification.success {
+    background: #4caf50;
+    color: white;
+}
+
+.notification.error {
+    background: #f44336;
+    color: white;
+}
+
+.notification.info {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Error Message */
+.error-message {
+    text-align: center;
+    color: #f44336;
+    padding: 2rem;
+    font-size: 1.1rem;
+}
+
+/* Loading State */
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+.loading-spinner::after {
+    content: '';
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .study-groups-header h1 {
+        font-size: 2rem;
+    }
+
+    .search-filters {
+        flex-direction: column;
+    }
+
+    .search-bar {
+        min-width: 100%;
+    }
+
+    .filters {
+        flex-wrap: wrap;
+    }
+
+    .filters select {
+        flex: 1;
+        min-width: 150px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .form-group.half {
+        width: 100%;
+    }
+}

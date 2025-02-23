@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace - CampusHub</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .filters {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 2rem auto;
+            max-width: 1200px;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .marketplace-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding: 1rem;
+        }
+
+        .product-price {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .product-seller {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .seller-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .add-listing-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .add-listing-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">🎓 CampusHub</a>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="marketplace.html" class="active"><i class="fas fa-store"></i> Marketplace</a></li>
+                <li><a href="study-groups.html"><i class="fas fa-users"></i> Study Groups</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
+                <li><a href="jobs.html"><i class="fas fa-briefcase"></i> Jobs</a></li>
+                <li><a href="community.html"><i class="fas fa-comments"></i> Community</a></li>
+                <li><a href="support.html"><i class="fas fa-hands-helping"></i> Support</a></li>
+                <li><a href="login.html" class="btn btn-primary">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main style="margin-top: 80px;">
+        <div class="filters">
+            <div class="filter-group">
+                <select id="category">
+                    <option value="">All Categories</option>
+                    <option value="textbooks">Textbooks</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="housing">Housing</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <input type="text" placeholder="Search items...">
+            </div>
+            <div class="filter-group">
+                <select id="sort">
+                    <option value="newest">Newest First</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="marketplace-grid">
+            <!-- Sample Product Cards -->
+            <div class="product-card">
+                <img src="https://source.unsplash.com/random/?textbook" alt="Calculus Textbook" class="product-image">
+                <div class="product-details">
+                    <h3>Calculus: Early Transcendentals</h3>
+                    <p>8th Edition, like new condition</p>
+                    <div class="product-price">$75</div>
+                    <div class="product-seller">
+                        <img src="https://source.unsplash.com/random/?person" alt="Seller" class="seller-avatar">
+                        <span>John D.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://source.unsplash.com/random/?laptop" alt="Laptop" class="product-image">
+                <div class="product-details">
+                    <h3>MacBook Pro 2021</h3>
+                    <p>M1 Chip, 16GB RAM, 512GB SSD</p>
+                    <div class="product-price">$1200</div>
+                    <div class="product-seller">
+                        <img src="https://source.unsplash.com/random/?woman" alt="Seller" class="seller-avatar">
+                        <span>Sarah M.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://source.unsplash.com/random/?desk" alt="Study Desk" class="product-image">
+                <div class="product-details">
+                    <h3>Study Desk</h3>
+                    <p>Wooden desk with drawer, good condition</p>
+                    <div class="product-price">$50</div>
+                    <div class="product-seller">
+                        <img src="https://source.unsplash.com/random/?man" alt="Seller" class="seller-avatar">
+                        <span>Mike R.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more product cards as needed -->
+        </div>
+
+        <!-- Add Listing Button -->
+        <a href="#" class="add-listing-btn" title="Add New Listing">
+            <i class="fas fa-plus"></i>
+        </a>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h3>CampusHub</h3>
+                <p>Connecting college communities.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Marketplace specific JavaScript
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterInputs = document.querySelectorAll('.filters select, .filters input');
+            
+            filterInputs.forEach(input => {
+                input.addEventListener('change', () => {
+                    // Implement filtering logic here
+                    console.log('Filtering...', {
+                        category: document.getElementById('category').value,
+                        search: document.querySelector('input[type="text"]').value,
+                        sort: document.getElementById('sort').value
+                    });
+                });
+            });
+
+            // Add listing button animation
+            const addButton = document.querySelector('.add-listing-btn');
+            addButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                addButton.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    addButton.style.transform = 'scale(1)';
+                }, 100);
+                // Implement add listing logic here
+            });
+        });
+    </script>
+</body>
+</html>

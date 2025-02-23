@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Groups - CampusHub</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/study-groups.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                CampusHub
+            </a>
+            <ul class="nav-links">
+                <li><a href="marketplace.html"><i class="fas fa-store"></i> Marketplace</a></li>
+                <li><a href="study-groups.html" class="active"><i class="fas fa-users"></i> Study Groups</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
+                <li><a href="community.html"><i class="fas fa-comments"></i> Community</a></li>
+                <li><a href="support.html"><i class="fas fa-hands-helping"></i> Support</a></li>
+                <li><a href="auth.html" class="btn btn-primary" id="authButton">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="study-groups-container">
+        <div class="study-groups-header">
+            <h1>Study Groups</h1>
+            <div class="search-filters">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search by subject, course, or topic...">
+                    <button type="button" id="searchButton">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="filters">
+                    <select id="subjectFilter">
+                        <option value="">All Engineering Branches</option>
+                        <option value="computer-science">Computer Science & Engineering</option>
+                        <option value="mechanical">Mechanical Engineering</option>
+                        <option value="electrical">Electrical Engineering</option>
+                        <option value="electronics">Electronics & Communication</option>
+                        <option value="civil">Civil Engineering</option>
+                        <option value="chemical">Chemical Engineering</option>
+                        <option value="aerospace">Aerospace Engineering</option>
+                        <option value="biotechnology">Biotechnology Engineering</option>
+                        <option value="industrial">Industrial Engineering</option>
+                        <option value="information-technology">Information Technology</option>
+                    </select>
+                    <select id="dayFilter">
+                        <option value="">Any Day</option>
+                        <option value="monday">Monday</option>
+                        <option value="tuesday">Tuesday</option>
+                        <option value="wednesday">Wednesday</option>
+                        <option value="thursday">Thursday</option>
+                        <option value="friday">Friday</option>
+                        <option value="saturday">Saturday</option>
+                        <option value="sunday">Sunday</option>
+                    </select>
+                </div>
+            </div>
+            <button id="createGroupBtn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Create New Study Group
+            </button>
+        </div>
+
+        <div class="study-groups-grid" id="studyGroupsGrid">
+            <!-- Study groups will be dynamically added here -->
+        </div>
+
+        <!-- Create Study Group Modal -->
+        <div id="createGroupModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Create Study Group</h2>
+                <form id="createGroupForm">
+                    <div class="form-group">
+                        <label for="groupName">Group Name</label>
+                        <input type="text" id="groupName" name="groupName" required placeholder="e.g., Data Structures Study Group">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Engineering Branch</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select Branch</option>
+                            <option value="computer-science">Computer Science & Engineering</option>
+                            <option value="mechanical">Mechanical Engineering</option>
+                            <option value="electrical">Electrical Engineering</option>
+                            <option value="electronics">Electronics & Communication</option>
+                            <option value="civil">Civil Engineering</option>
+                            <option value="chemical">Chemical Engineering</option>
+                            <option value="aerospace">Aerospace Engineering</option>
+                            <option value="biotechnology">Biotechnology Engineering</option>
+                            <option value="industrial">Industrial Engineering</option>
+                            <option value="information-technology">Information Technology</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="course">Course/Subject</label>
+                        <input type="text" id="course" name="course" required placeholder="e.g., Data Structures, Thermodynamics">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" required placeholder="Describe the focus of your study group, topics to be covered, and learning objectives"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="semester">Semester</label>
+                        <select id="semester" name="semester" required>
+                            <option value="">Select Semester</option>
+                            <option value="1">1st Semester</option>
+                            <option value="2">2nd Semester</option>
+                            <option value="3">3rd Semester</option>
+                            <option value="4">4th Semester</option>
+                            <option value="5">5th Semester</option>
+                            <option value="6">6th Semester</option>
+                            <option value="7">7th Semester</option>
+                            <option value="8">8th Semester</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="maxParticipants">Maximum Participants</label>
+                        <input type="number" id="maxParticipants" name="maxParticipants" min="2" max="100" value="50" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="resources">Study Materials & Resources</label>
+                        <textarea id="resources" name="resources" placeholder="List any required textbooks, online resources, or materials participants should have"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Create Group</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <template id="studyGroupTemplate">
+        <div class="study-group-card">
+            <div class="group-header">
+                <h3 class="group-name"></h3>
+                <span class="subject-tag"></span>
+            </div>
+            <p class="group-description"></p>
+            <div class="group-details">
+                <div class="detail">
+                    <i class="fas fa-calendar"></i>
+                    <span class="meeting-time"></span>
+                </div>
+                <div class="detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="location"></span>
+                </div>
+                <div class="detail">
+                    <i class="fas fa-users"></i>
+                    <span class="participants"></span>
+                </div>
+            </div>
+            <div class="group-actions">
+                <button class="btn btn-primary join-group">Join Group</button>
+                <button class="btn btn-outline view-details">View Details</button>
+            </div>
+        </div>
+    </template>
+
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/study-groups.js"></script>
+</body>
+</html>

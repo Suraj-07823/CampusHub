@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup - CampusHub</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Firebase SDKs -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    <script type="module" src="js/auth.js"></script>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <h2>Welcome to CampusHub</h2>
+                <p>Connect with your campus community</p>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+            
+            <form id="loginForm" class="auth-form active">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                    <div id="loginEmailError" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                    <div id="loginPasswordError" class="error-message"></div>
+                </div>
+                <button type="submit" class="auth-btn">Login</button>
+                
+                <div class="divider">or</div>
+                
+                <div class="social-auth">
+                    <button type="button" id="googleLoginBtn" class="social-auth-btn google-auth-btn">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="18" height="18">
+                        <span>Continue with Google</span>
+                    </button>
+                </div>
+            </form>
+            
+            <form id="signupForm" class="auth-form">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                    <div id="signupNameError" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required>
+                    <div id="signupEmailError" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                    <div id="signupPasswordError" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" required>
+                    <div id="signupConfirmPasswordError" class="error-message"></div>
+                </div>
+                <button type="submit" class="auth-btn">Sign Up</button>
+                
+                <div class="divider">or</div>
+                
+                <div class="social-auth">
+                    <button type="button" id="googleSignupBtn" class="social-auth-btn google-auth-btn">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="18" height="18">
+                        <span>Sign up with Google</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+
+        .auth-box {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .auth-header p {
+            color: #666;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            background: none;
+            font-size: 16px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .auth-tab.active {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            margin-bottom: -2px;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .auth-btn:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 45%;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        .social-auth {
+            margin-top: 20px;
+        }
+
+        .social-auth-btn {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .social-auth-btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-1px);
+        }
+
+        .google-auth-btn img {
+            width: 18px;
+            height: 18px;
+        }
+    </style>
+
+    <script>
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAcERRyqO8MIDVq4XrUnnbE0_fqyhvpKPo",
+            authDomain: "campushub-9ce8e.firebaseapp.com",
+            projectId: "campushub-9ce8e",
+            storageBucket: "campushub-9ce8e.firebasestorage.app",
+            messagingSenderId: "961265177921",
+            appId: "1:961265177921:web:9d1470863a0315af567dc0",
+            measurementId: "G-PSNHNBZ5M9"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Utility Functions
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.classList.add('show');
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.error-message').forEach(element => {
+                element.textContent = '';
+                element.classList.remove('show');
+            });
+        }
+
+        function setLoading(button, isLoading) {
+            if (isLoading) {
+                button.classList.add('loading');
+                button.disabled = true;
+            } else {
+                button.classList.remove('loading');
+                button.disabled = false;
+            }
+        }
+
+        // Login Form Handler
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearErrors();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const loginButton = document.getElementById('loginButton');
+
+            try {
+                setLoading(loginButton, true);
+                await auth.signInWithEmailAndPassword(email, password);
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('Login error:', error);
+                showError('loginPasswordError', error.message);
+                setLoading(loginButton, false);
+            }
+        });
+
+        // Signup Form Handler
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearErrors();
+
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            const signupButton = document.getElementById('signupButton');
+
+            // Validation
+            if (!name.trim()) {
+                showError('signupNameError', 'Please enter your name');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showError('signupConfirmPasswordError', 'Passwords do not match');
+                return;
+            }
+
+            if (password.length < 6) {
+                showError('signupPasswordError', 'Password must be at least 6 characters');
+                return;
+            }
+
+            try {
+                setLoading(signupButton, true);
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                
+                // Update user profile with name
+                await userCredential.user.updateProfile({
+                    displayName: name
+                });
+
+                // Show success message
+                document.getElementById('signupSuccess').textContent = 'Account created successfully! Redirecting...';
+                document.getElementById('signupSuccess').classList.add('show');
+
+                // Redirect after a short delay
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } catch (error) {
+                console.error('Signup error:', error);
+                showError('signupEmailError', error.message);
+                setLoading(signupButton, false);
+            }
+        });
+
+        // Social Authentication Handlers
+        function handleSocialAuth(provider) {
+            auth.signInWithPopup(provider)
+                .then(() => {
+                    window.location.href = 'index.html';
+                })
+                .catch((error) => {
+                    console.error('Social auth error:', error);
+                    alert(error.message);
+                });
+        }
+
+        // Google Authentication
+        document.querySelectorAll('.google-auth-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                handleSocialAuth(provider);
+            });
+        });
+
+        // GitHub Authentication
+        document.getElementById('githubAuthBtn').addEventListener('click', () => {
+            const provider = new firebase.auth.GithubAuthProvider();
+            handleSocialAuth(provider);
+        });
+
+        // Tab Switching
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.auth-tab');
+            const forms = document.querySelectorAll('.auth-form');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    clearErrors();
+                    const targetForm = tab.dataset.tab;
+
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    forms.forEach(form => {
+                        form.classList.remove('active');
+                        if (form.id === `${targetForm}Form`) {
+                            form.classList.add('active');
+                        }
+                    });
+                });
+            });
+        });
+
+        // Check if user is already logged in
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                console.log('User is already logged in:', user.email);
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>
